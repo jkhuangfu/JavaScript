@@ -1,0 +1,26 @@
+
+//Cookie的创建与提取！
+
+function getCookie(key) {
+	var str_cookie = document.cookie;
+	var list = str_cookie.split("; ");
+	//username=yintao; password=123
+	for(var i in list) {
+		var kvs = list[i].split("="); // [username,yintao]
+		if(kvs[0]==key){
+			return kvs[1];
+		}
+	}
+	return null;
+}
+
+//
+function setCookie(key, value, exp){
+	var d = new Date();
+	d.setDate(d.getDate()+exp);
+	document.cookie = key+"="+value+"; expires="+d;
+}
+//
+function removeCookie(key) {
+	addCookie(key,null,-1);
+}
