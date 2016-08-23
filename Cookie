@@ -24,3 +24,4 @@ function setCookie(key, value, exp){
 function removeCookie(key) {
 	addCookie(key,null,-1);
 }
+对赌地对
