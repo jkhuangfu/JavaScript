@@ -1,3 +1,6 @@
+/*
+* 返回浏览器名称+版本号 不能识别 IE11及Edge
+*/
 function getBrowserInfo(){
 	var agent = navigator.userAgent.toLowerCase() ;	
 	var regStr_ie = /msie [\d.]+;/gi ;
