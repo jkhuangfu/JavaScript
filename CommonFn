@@ -28,3 +28,14 @@ function getBrowserInfo(){
 	}
 
 }
+/*****************************************************************************************************/
+// 判断某种ele中是否含有attr
+function elementSupportsAttribute(element, attribute) {
+  var ele = document.createElement(element);
+  if (attribute in ele) {
+    return true;
+  } else {
+    return false;
+  }
+};
+/*******************************************************************************************************/
