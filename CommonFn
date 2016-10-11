@@ -39,3 +39,24 @@ function elementSupportsAttribute(element, attribute) {
   }
 };
 /*******************************************************************************************************/
+
+/******************************************************************************************************/
+//jsonp跨域处理
+			//创建script标签
+			function requestServerCall(url) {
+				var head = document.head;
+				var script = document.createElement("script");
+				script.setAttribute("src", url);
+				head.appendChild(script);
+				head.removeChild(script);//添加成功获取数据后进行移除处理
+			}
+			//创建处理函数    
+			function jsonpCallback(data) {
+				alert(data.message); // Response data from the server
+			}
+			//发送请求
+			function sendRequest() {
+				// Edit with your Web Service URL
+				requestServerCall("http://XXX.com?callback=jsonpCallback");
+			}
+/******************************************************************************************************/
