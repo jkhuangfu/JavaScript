@@ -60,3 +60,15 @@ function elementSupportsAttribute(element, attribute) {
 				requestServerCall("http://XXX.com?callback=jsonpCallback");
 			}
 /******************************************************************************************************/
+
+/******************************************************************************************************/
+//http协议强制跳转https协议
+var str = window.location.href;
+var arr = str.split('');
+if(arr[4]!="s"){
+	var newStr = arr.join('');
+	arr.splice(4,0,"s");
+	window.location.href = newStr;
+};   
+/******************************************************************************************************/
+    	
