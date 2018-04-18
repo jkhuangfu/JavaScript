@@ -82,3 +82,55 @@ function sortByKey(array,key){
     });
 };
 /******************************************************************************************************/
+/**
+     * 四舍五入
+     * @param number 要四舍五入的数字
+     * @param precision 精度 保留小数点位数
+     * @returns {*}
+     */
+    function round(number,precision) {
+      const enlargeDigits = function enlargeDigits(times) {
+        return function (number) {
+          return +(String(number) + "e" + String(times));
+        };
+      };
+      const toFixed = function toFixed(precision) {
+        return function (number) {
+          return number.toFixed(precision);
+        };
+      };
+      const compose = function compose() {
+        for (var _len = arguments.length, functions = Array(_len), _key = 0; _key < _len; _key++) {
+          functions[_key] = arguments[_key];
+        }
+
+        var nonFunctionTypeLength = functions.filter(function (item) {
+          return typeof item !== 'function';
+        }).length;
+        if (nonFunctionTypeLength > 0) {
+          throw new Error("compose's params must be functions");
+        }
+        if (functions.length === 0) {
+          return function (arg) {
+            return arg;
+          };
+        }
+        if (functions.length === 1) {
+          return functions[0];
+        }
+        return functions.reduce(function (a, b) {
+          return function () {
+            return a(b.apply(undefined, arguments));
+          };
+        });
+      };
+      var precision = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 2;
+
+      if (Number.isNaN(+number)) {
+        throw new Error("number's type must be Number");
+      }
+      if (Number.isNaN(+precision)) {
+        throw new Error("precision's type must be Number");
+      }
+      return compose(toFixed(precision), enlargeDigits(-precision), Math.round, enlargeDigits(precision))(number)
+    }
